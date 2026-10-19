@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Profile - Tuition Management System</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .profile-tabs {
+      display: flex;
+      gap: 0.5rem;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 1.5rem;
+      overflow-x: auto;
+    }
+    .profile-tab {
+      padding: 0.75rem 1.25rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all var(--transition-fast);
+    }
+    .profile-tab:hover {
+      color: var(--primary);
+    }
+    .profile-tab.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="brand-icon">A</div>
+        <div class="brand-text">
+          <span class="brand-title">Apex Academy</span>
+          <span class="brand-subtitle">Tuition ERP</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">Main Menu</div>
+        <a href="dashboard.html" class="nav-item" data-nav="dashboard">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect width="7" height="9" x="3" y="3" rx="1"></rect><rect width="7" height="5" x="14" y="3" rx="1"></rect><rect width="7" height="9" x="14" y="12" rx="1"></rect><rect width="7" height="5" x="3" y="16" rx="1"></rect></svg>
+          Dashboard
+        </a>
+        <a href="students.html" class="nav-item active" data-nav="students">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          Students
+        </a>
+        <a href="teachers.html" class="nav-item" data-nav="teachers">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path><circle cx="12" cy="8" r="3"></circle><path d="M6 18c0-3 3-4 6-4s6 1 6 4"></path></svg>
+          Teachers
+        </a>
+        <a href="batches.html" class="nav-item" data-nav="batches">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><rect width="8" height="6" x="13" y="2" rx="1"></rect></svg>
+          Batches
+        </a>
+
+        <div class="nav-section-label">Academic & Operations</div>
+        <a href="attendance.html" class="nav-item" data-nav="attendance">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect width="18" height="18" x="3" y="4" rx="2"></rect><line x1="16" x2="16" y1="2" y2="6"></line><line x1="8" x2="8" y1="2" y2="6"></line><line x1="3" x2="21" y1="10" y2="10"></line><path d="m9 16 2 2 4-4"></path></svg>
+          Attendance
+        </a>
+        <a href="fees.html" class="nav-item" data-nav="fees">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="12" x2="12" y1="2" y2="22"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+          Fee Management
+        </a>
+        <a href="timetable.html" class="nav-item" data-nav="timetable">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          Timetable
+        </a>
+        <a href="examinations.html" class="nav-item" data-nav="examinations">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+          Examinations
+        </a>
+        <a href="results.html" class="nav-item" data-nav="results">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>
+          Results & Cards
+        </a>
+        <a href="reports.html" class="nav-item" data-nav="reports">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 3v18h18"></path><path d="m19 9-5 5-4-4-3 3"></path></svg>
+          Reports & Export
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-snippet">
+          <div class="user-avatar user-avatar-initials">AD</div>
+          <div class="user-meta">
+            <div class="name user-display-name">Administrator</div>
+            <div class="role-pill role-admin user-role-badge">ADMIN</div>
+          </div>
+          <button class="logout-btn logout-trigger" title="Sign Out">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-wrapper">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="mobile-menu-btn" title="Toggle Menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" x2="21" y1="6" y2="6"></line><line x1="3" x2="21" y1="12" y2="12"></line><line x1="3" x2="21" y1="18" y2="18"></line></svg>
+          </button>
+          <a href="students.html" class="btn btn-secondary btn-sm" style="margin-right: 0.5rem;">← Back to Students</a>
+          <h1 class="page-heading">Student Profile</h1>
+        </div>
+        <div class="topbar-right">
+          <div id="connection-status-pill" class="system-status"></div>
+        </div>
+      </header>
+
+      <main class="content-area">
+        <!-- Profile Banner Card -->
+        <div class="card" style="margin-bottom: 1.5rem;">
+          <div class="card-body" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;">
+            <div style="display: flex; align-items: center; gap: 1.25rem;">
+              <img id="profile-img" src="" alt="Student" style="width: 72px; height: 72px; border-radius: 50%; object-fit: cover; border: 3px solid var(--primary-light);">
+              <div>
+                <h2 id="profile-name" style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: var(--text-primary);">-</h2>
+                <div style="display: flex; align-items: center; gap: 0.75rem; margin-top: 0.25rem;">
+                  <code id="profile-code" style="font-size: 0.9rem; font-weight: 700;">-</code>
+                  <span id="profile-status-badge"></span>
+                </div>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 0.5rem;">
+              <button class="btn btn-secondary btn-sm" onclick="window.print()">🖨️ Print Profile</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="profile-tabs">
+          <div class="profile-tab active" data-tab="personal">Personal Details</div>
+          <div class="profile-tab" data-tab="batches">Enrolled Batches</div>
+          <div class="profile-tab" data-tab="attendance">Attendance History</div>
+          <div class="profile-tab" data-tab="fees">Fees & Payments</div>
+          <div class="profile-tab" data-tab="exams">Examination Results</div>
+        </div>
+
+        <!-- Tab 1: Personal Details -->
+        <div class="tab-section" id="section-personal">
+          <div class="card">
+            <div class="card-header"><h3 class="card-title">Personal & Family Details</h3></div>
+            <div class="card-body">
+              <div class="form-row" style="margin-bottom: 1.25rem;">
+                <div>
+                  <label class="form-label">Date of Birth</label>
+                  <p id="p-dob" style="font-weight: 600;">-</p>
+                </div>
+                <div>
+                  <label class="form-label">Gender</label>
+                  <p id="p-gender" style="font-weight: 600;">-</p>
+                </div>
+                <div>
+                  <label class="form-label">Phone Number</label>
+                  <p id="p-phone" style="font-weight: 600;">-</p>
+                </div>
+                <div>
+                  <label class="form-label">Email Address</label>
+                  <p id="p-email" style="font-weight: 600;">-</p>
+                </div>
+              </div>
+
+              <div class="form-row" style="margin-bottom: 1.25rem;">
+                <div>
+                  <label class="form-label">Parent / Guardian Name</label>
+                  <p id="p-parent-name" style="font-weight: 600;">-</p>
+                </div>
+                <div>
+                  <label class="form-label">Parent Contact Phone</label>
+                  <p id="p-parent-phone" style="font-weight: 600;">-</p>
+                </div>
+                <div>
+                  <label class="form-label">Admission Date</label>
+                  <p id="p-admission" style="font-weight: 600;">-</p>
+                </div>
+                <div>
+                  <label class="form-label">Configured Monthly Fee</label>
+                  <p id="p-fee" style="font-weight: 700; color: var(--primary);">-</p>
+                </div>
+              </div>
+
+              <div>
+                <label class="form-label">Residential Address</label>
+                <p id="p-address" style="color: var(--text-secondary);">-</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: Enrolled Batches -->
+        <div class="tab-section" id="section-batches" style="display: none;">
+          <div class="card">
+            <div class="card-header"><h3 class="card-title">Enrolled Academic Batches</h3></div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Batch Name</th>
+                    <th>Subject</th>
+                    <th>Grade</th>
+                    <th>Assigned Teacher</th>
+                    <th>Class Timing</th>
+                    <th>Enrolment Status</th>
+                  </tr>
+                </thead>
+                <tbody id="batches-list-body">
+                  <tr><td colspan="6" style="text-align: center; padding: 1.5rem;"><span class="spinner"></span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: Attendance History -->
+        <div class="tab-section" id="section-attendance" style="display: none;">
+          <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-bottom: 1.5rem;">
+            <div class="stat-card">
+              <div class="stat-content">
+                <span class="stat-title">Attendance Rate</span>
+                <span class="stat-value" id="att-rate-badge" style="color: var(--primary);">-</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-content">
+                <span class="stat-title">Present Days</span>
+                <span class="stat-value" id="att-present-count" style="color: var(--success);">-</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-content">
+                <span class="stat-title">Late Days</span>
+                <span class="stat-value" id="att-late-count" style="color: var(--warning);">-</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-content">
+                <span class="stat-title">Absent Days</span>
+                <span class="stat-value" id="att-absent-count" style="color: var(--danger);">-</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header"><h3 class="card-title">Attendance Logs</h3></div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Batch</th>
+                    <th>Status</th>
+                    <th>Remarks</th>
+                  </tr>
+                </thead>
+                <tbody id="attendance-list-body">
+                  <tr><td colspan="4" style="text-align: center; padding: 1.5rem;"><span class="spinner"></span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 4: Fees & Payments -->
+        <div class="tab-section" id="section-fees" style="display: none;">
+          <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-bottom: 1.5rem;">
+            <div class="stat-card">
+              <div class="stat-content">
+                <span class="stat-title">Total Billed Due</span>
+                <span class="stat-value" id="fee-total-due">-</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-content">
+                <span class="stat-title">Total Paid</span>
+                <span class="stat-value" id="fee-total-paid" style="color: var(--success);">-</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-content">
+                <span class="stat-title">Outstanding Balance</span>
+                <span class="stat-value" id="fee-balance" style="color: var(--danger);">-</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="margin-bottom: 1.5rem;">
+            <div class="card-header"><h3 class="card-title">Fee Obligations</h3></div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Month</th>
+                    <th>Amount Due</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="obligations-list-body">
+                  <tr><td colspan="5" style="text-align: center; padding: 1.5rem;"><span class="spinner"></span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header"><h3 class="card-title">Payment Receipts History</h3></div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Receipt No</th>
+                    <th>Amount Paid</th>
+                    <th>Date</th>
+                    <th>Payment Method</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="payments-list-body">
+                  <tr><td colspan="5" style="text-align: center; padding: 1.5rem;"><span class="spinner"></span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 5: Examination Results -->
+        <div class="tab-section" id="section-exams" style="display: none;">
+          <div class="card">
+            <div class="card-header"><h3 class="card-title">Academic Examination History</h3></div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Exam Name</th>
+                    <th>Date</th>
+                    <th>Marks Obtained / Max</th>
+                    <th>Percentage</th>
+                    <th>Grade</th>
+                    <th>Result</th>
+                  </tr>
+                </thead>
+                <tbody id="results-list-body">
+                  <tr><td colspan="6" style="text-align: center; padding: 1.5rem;"><span class="spinner"></span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- CDN Dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/student-details.js"></script>
+</body>
+</html>

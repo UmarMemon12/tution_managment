@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fee Management - Tuition Management System</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="brand-icon">A</div>
+        <div class="brand-text">
+          <span class="brand-title">Apex Academy</span>
+          <span class="brand-subtitle">Tuition ERP</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">Main Menu</div>
+        <a href="dashboard.html" class="nav-item" data-nav="dashboard">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect width="7" height="9" x="3" y="3" rx="1"></rect><rect width="7" height="5" x="14" y="3" rx="1"></rect><rect width="7" height="9" x="14" y="12" rx="1"></rect><rect width="7" height="5" x="3" y="16" rx="1"></rect></svg>
+          Dashboard
+        </a>
+        <a href="students.html" class="nav-item" data-nav="students">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          Students
+        </a>
+        <a href="teachers.html" class="nav-item" data-nav="teachers">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path><circle cx="12" cy="8" r="3"></circle><path d="M6 18c0-3 3-4 6-4s6 1 6 4"></path></svg>
+          Teachers
+        </a>
+        <a href="batches.html" class="nav-item" data-nav="batches">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><rect width="8" height="6" x="13" y="2" rx="1"></rect></svg>
+          Batches
+        </a>
+
+        <div class="nav-section-label">Academic & Operations</div>
+        <a href="attendance.html" class="nav-item" data-nav="attendance">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect width="18" height="18" x="3" y="4" rx="2"></rect><line x1="16" x2="16" y1="2" y2="6"></line><line x1="8" x2="8" y1="2" y2="6"></line><line x1="3" x2="21" y1="10" y2="10"></line><path d="m9 16 2 2 4-4"></path></svg>
+          Attendance
+        </a>
+        <a href="fees.html" class="nav-item active" data-nav="fees">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="12" x2="12" y1="2" y2="22"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+          Fee Management
+        </a>
+        <a href="timetable.html" class="nav-item" data-nav="timetable">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          Timetable
+        </a>
+        <a href="examinations.html" class="nav-item" data-nav="examinations">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+          Examinations
+        </a>
+        <a href="results.html" class="nav-item" data-nav="results">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>
+          Results & Cards
+        </a>
+        <a href="reports.html" class="nav-item" data-nav="reports">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 3v18h18"></path><path d="m19 9-5 5-4-4-3 3"></path></svg>
+          Reports & Export
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-snippet">
+          <div class="user-avatar user-avatar-initials">AD</div>
+          <div class="user-meta">
+            <div class="name user-display-name">Administrator</div>
+            <div class="role-pill role-admin user-role-badge">ADMIN</div>
+          </div>
+          <button class="logout-btn logout-trigger" title="Sign Out">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-wrapper">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="mobile-menu-btn" title="Toggle Menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" x2="21" y1="6" y2="6"></line><line x1="3" x2="21" y1="12" y2="12"></line><line x1="3" x2="21" y1="18" y2="18"></line></svg>
+          </button>
+          <h1 class="page-heading">Fee & Financial Management</h1>
+        </div>
+        <div class="topbar-right">
+          <div id="connection-status-pill" class="system-status"></div>
+          <button class="btn btn-secondary btn-sm" onclick="openSupabaseConfigModal()">
+            ⚙️ Supabase API
+          </button>
+        </div>
+      </header>
+
+      <main class="content-area">
+        <!-- Financial Summary Metric Cards -->
+        <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin-bottom: 2rem;">
+          <div class="stat-card">
+            <div class="stat-content">
+              <span class="stat-title">Total Fees Billed (Due)</span>
+              <span class="stat-value" id="fees-stat-total-due">₹0.00</span>
+              <span class="stat-subtext">Sum of valid obligations</span>
+            </div>
+            <div class="stat-icon info">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="5" rx="2"></rect><line x1="2" x2="22" y1="10" y2="10"></line></svg>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-content">
+              <span class="stat-title">Total Fees Collected</span>
+              <span class="stat-value" style="color: var(--success);" id="fees-stat-collected">₹0.00</span>
+              <span class="stat-subtext">Verified received receipts</span>
+            </div>
+            <div class="stat-icon success">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-content">
+              <span class="stat-title">Outstanding Balance</span>
+              <span class="stat-value" style="color: var(--danger);" id="fees-stat-outstanding">₹0.00</span>
+              <span class="stat-subtext">Net outstanding receivables</span>
+            </div>
+            <div class="stat-icon danger">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter & Actions Toolbar -->
+        <div class="toolbar">
+          <div class="toolbar-left">
+            <div class="search-box">
+              <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" id="search-payment" class="form-control" placeholder="Search receipt no, student name...">
+            </div>
+
+            <select id="filter-payment-method" class="form-control" style="width: auto;">
+              <option value="">All Payment Methods</option>
+              <option value="cash">Cash</option>
+              <option value="upi">UPI / Online</option>
+              <option value="bank_transfer">Bank Transfer</option>
+              <option value="cheque">Cheque</option>
+              <option value="card">Card</option>
+            </select>
+          </div>
+
+          <div class="toolbar-right">
+            <button id="add-obligation-btn" class="btn btn-secondary">
+              + Generate Due Obligation
+            </button>
+            <button id="record-payment-btn" class="btn btn-primary">
+              💳 Record Payment
+            </button>
+          </div>
+        </div>
+
+        <!-- Payments Ledger Table -->
+        <div class="card" style="margin-bottom: 2rem;">
+          <div class="card-header">
+            <h3 class="card-title">Payment Receipts Ledger</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Receipt Number</th>
+                  <th>Student Details</th>
+                  <th>Billing Obligation</th>
+                  <th>Amount Paid</th>
+                  <th>Payment Method</th>
+                  <th>Date & Time</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="payments-table-body">
+                <tr><td colspan="8" style="text-align: center; padding: 2rem;"><span class="spinner"></span> Loading payments...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Student Fee Obligations Table -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Configured Fee Obligations</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Student Name</th>
+                  <th>Title / Description</th>
+                  <th>Billing Month</th>
+                  <th>Amount Due</th>
+                  <th>Due Date</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="obligations-table-body">
+                <tr><td colspan="6" style="text-align: center; padding: 1.5rem;"><span class="spinner"></span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Record Payment Modal -->
+  <div class="modal-backdrop" id="record-payment-modal">
+    <div class="modal modal-lg">
+      <div class="modal-header">
+        <h3 class="modal-title">Record Student Fee Payment</h3>
+        <button class="modal-close" onclick="closeModal('record-payment-modal')">✕</button>
+      </div>
+      <form id="payment-form">
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Select Student <span class="required">*</span></label>
+              <select id="payment-student-select" class="form-control" required>
+                <option value="">-- Choose Student --</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Receipt Number <span class="required">*</span></label>
+              <input type="text" id="payment-receipt-field" class="form-control" required readonly>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Fee Obligation / Dues Month</label>
+              <select id="payment-obligation-select" class="form-control">
+                <option value="">-- Select Student First --</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Amount Paid (₹) <span class="required">*</span></label>
+              <input type="number" id="payment-amount-field" class="form-control" min="1" step="50" placeholder="e.g. 2500" required>
+              <div class="form-help">Partial or full payments are supported.</div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Payment Method <span class="required">*</span></label>
+              <select id="payment-method-select" class="form-control" required>
+                <option value="cash">Cash (Reception Desk)</option>
+                <option value="upi">UPI / QR Code</option>
+                <option value="bank_transfer">Bank Transfer (NEFT/IMPS)</option>
+                <option value="cheque">Cheque</option>
+                <option value="card">Credit / Debit Card</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Reference / Transaction Notes</label>
+              <input type="text" id="payment-notes" class="form-control" placeholder="e.g. GPay Ref: 98127391823">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('record-payment-modal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Process & Record Receipt</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Generate Fee Obligation Modal -->
+  <div class="modal-backdrop" id="create-obligation-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Generate Fee Obligation</h3>
+        <button class="modal-close" onclick="closeModal('create-obligation-modal')">✕</button>
+      </div>
+      <form id="obligation-form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Student <span class="required">*</span></label>
+            <select id="obligation-student-select" class="form-control" required>
+              <option value="">-- Choose Student --</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Fee Title <span class="required">*</span></label>
+            <input type="text" id="obligation-title" class="form-control" placeholder="e.g. Monthly Tuition Fee - November 2026" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Billing Month <span class="required">*</span></label>
+              <input type="month" id="obligation-month" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Amount Due (₹) <span class="required">*</span></label>
+              <input type="number" id="obligation-amount" class="form-control" min="1" step="50" value="2500" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Due Date <span class="required">*</span></label>
+            <input type="date" id="obligation-due-date" class="form-control" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('create-obligation-modal')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Create Obligation</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Printable Payment Receipt Modal -->
+  <div class="modal-backdrop" id="print-receipt-modal">
+    <div class="modal modal-lg">
+      <div class="modal-header no-print">
+        <h3 class="modal-title">Official Fee Payment Receipt</h3>
+        <button class="modal-close" onclick="closeModal('print-receipt-modal')">✕</button>
+      </div>
+      <div class="modal-body" id="receipt-printable-content">
+        <div class="receipt-card">
+          <div class="receipt-header">
+            <div class="receipt-logo-title">APEX ACADEMY</div>
+            <div class="receipt-sub">Premier Tuition & Academic Institute</div>
+            <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem;">
+              14 Knowledge Hub, University Road • contact@apexacademy.edu • Tel: +91 98765 00000
+            </div>
+            <div style="display: inline-block; margin-top: 0.75rem; padding: 0.25rem 0.75rem; background: var(--success-light); color: var(--success-text); font-weight: 700; border-radius: 9999px; font-size: 0.8rem;">
+              OFFICIAL PAYMENT RECEIPT
+            </div>
+          </div>
+
+          <div class="receipt-grid">
+            <div class="receipt-item">
+              <strong>Receipt Number</strong>
+              <code id="receipt-no" style="font-size: 1rem; font-weight: 700;">-</code>
+            </div>
+            <div class="receipt-item">
+              <strong>Date & Time</strong>
+              <span id="receipt-date">-</span>
+            </div>
+            <div class="receipt-item">
+              <strong>Student Name</strong>
+              <span id="receipt-student-name" style="font-size: 1.05rem; font-weight: 700;">-</span>
+            </div>
+            <div class="receipt-item">
+              <strong>Student ID</strong>
+              <code id="receipt-student-id">-</code>
+            </div>
+            <div class="receipt-item">
+              <strong>Fee Obligation / Billing Item</strong>
+              <span id="receipt-fee-title">-</span>
+            </div>
+            <div class="receipt-item">
+              <strong>Payment Method</strong>
+              <span id="receipt-method">-</span>
+            </div>
+          </div>
+
+          <div class="receipt-amount-box">
+            <div style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Amount Paid in Full / Part</div>
+            <div class="receipt-amount-val" id="receipt-amount">₹0.00</div>
+          </div>
+
+          <div style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 2rem;">
+            <strong>Transaction Notes:</strong> <span id="receipt-notes">None</span>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: flex-end; padding-top: 2rem; border-top: 1px dashed var(--border);">
+            <div style="font-size: 0.75rem; color: var(--text-muted);">
+              Computer generated receipt. Valid without seal.<br>
+              Apex Academy Tuition ERP System
+            </div>
+            <div style="text-align: center;">
+              <div style="border-bottom: 1px solid var(--text-muted); width: 160px; margin-bottom: 0.3rem;"></div>
+              <span style="font-size: 0.75rem; color: var(--text-muted);">Authorized Cashier / Officer</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer no-print">
+        <button class="btn btn-secondary" onclick="closeModal('print-receipt-modal')">Close</button>
+        <button class="btn btn-primary" id="print-receipt-btn">🖨️ Print Receipt</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CDN Dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/fees.js"></script>
+</body>
+</html>

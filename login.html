@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Tuition Management System</title>
+  <meta name="description" content="Secure login to Apex Academy Tuition Management System">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .login-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+      position: relative;
+    }
+    .login-box {
+      width: 100%;
+      max-width: 440px;
+      background: #ffffff;
+      border-radius: var(--radius-xl);
+      padding: 2.5rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+    }
+    .demo-role-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.6rem;
+      margin-top: 1.5rem;
+    }
+    .demo-btn {
+      padding: 0.6rem 0.4rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background: var(--surface-subtle);
+      cursor: pointer;
+      text-align: center;
+      transition: all var(--transition-fast);
+      color: var(--text-primary);
+    }
+    .demo-btn:hover {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-box">
+      <!-- Institute Brand Header -->
+      <div style="text-align: center; margin-bottom: 2rem;">
+        <div style="width: 52px; height: 52px; border-radius: var(--radius-md); background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%); color: white; display: inline-flex; align-items: center; justify-content: center; font-size: 1.6rem; font-weight: 800; box-shadow: 0 8px 16px rgba(79, 70, 229, 0.35); margin-bottom: 0.75rem;">
+          A
+        </div>
+        <h2 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; color: var(--text-primary);">Apex Academy</h2>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Tuition Management System</p>
+      </div>
+
+      <!-- Supabase Auth Login Form -->
+      <form id="login-form">
+        <div class="form-group">
+          <label class="form-label" for="login-email">Email Address <span class="required">*</span></label>
+          <input type="email" id="login-email" class="form-control" placeholder="name@apexacademy.edu" required autofocus>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="login-password">Password <span class="required">*</span></label>
+          <input type="password" id="login-password" class="form-control" placeholder="••••••••••••" required>
+        </div>
+
+        <button type="submit" id="login-submit-btn" class="btn btn-primary" style="width: 100%; padding: 0.75rem; margin-top: 0.5rem; font-size: 0.95rem;">
+          Sign In to Portal
+        </button>
+      </form>
+
+      <!-- Quick Demo Login Switcher -->
+      <div style="margin-top: 2rem; border-top: 1px dashed var(--border); padding-top: 1.5rem;">
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; color: var(--text-muted);">
+            Quick Demo Login
+          </span>
+          <span id="connection-status-pill" class="system-status" style="font-size: 0.7rem; padding: 0.2rem 0.5rem;"></span>
+        </div>
+        <div class="demo-role-grid">
+          <button type="button" class="demo-btn" onclick="loginAsDemo('admin')">
+            <span style="display:block; font-size: 1.1rem; margin-bottom: 0.2rem;">👑</span>
+            Admin
+          </button>
+          <button type="button" class="demo-btn" onclick="loginAsDemo('teacher')">
+            <span style="display:block; font-size: 1.1rem; margin-bottom: 0.2rem;">🧑‍🏫</span>
+            Teacher
+          </button>
+          <button type="button" class="demo-btn" onclick="loginAsDemo('receptionist')">
+            <span style="display:block; font-size: 1.1rem; margin-bottom: 0.2rem;">💼</span>
+            Reception
+          </button>
+        </div>
+      </div>
+
+      <div style="margin-top: 1.5rem; text-align: center;">
+        <button type="button" class="btn btn-secondary btn-sm" onclick="openSupabaseConfigModal()" style="font-size: 0.75rem;">
+          ⚙️ Configure Supabase Credentials
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CDN Dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      await initAuth();
+
+      document.getElementById('login-form')?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('login-email').value;
+        const pass = document.getElementById('login-password').value;
+        const btn = document.getElementById('login-submit-btn');
+
+        btn.disabled = true;
+        btn.innerHTML = `<span class="spinner"></span> Signing in...`;
+
+        try {
+          await loginUser(email, pass);
+          showToast('Signed in successfully! Redirecting...', 'success');
+          setTimeout(() => window.location.href = 'dashboard.html', 800);
+        } catch (err) {
+          showToast(err.message || 'Login failed', 'error');
+          btn.disabled = false;
+          btn.innerHTML = `Sign In to Portal`;
+        }
+      });
+    });
+  </script>
+</body>
+</html>
